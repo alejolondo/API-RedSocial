@@ -2,7 +2,10 @@
 const {connection} = require("./database/conexion")
 const express = require("express")
 const cors = require("cors")
-
+//importar rutas
+const PublicacionRoutes = require('./routes/publicacion');
+const UsuarioRoutes = require('./routes/usuario');
+const FollowRoutes = require('./routes/follow');
 
 //Mensaje inicial 
 console.log("API NODE para Red Social Inicializada")
@@ -22,7 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // cargar conf rutas
-
+app.use("/api", UsuarioRoutes);
+app.use("/api", PublicacionRoutes);
+app.use("/api", FollowRoutes);
 
 // ruta de prueba
 app.get('/ruta-prueba', (req, res)=>{
